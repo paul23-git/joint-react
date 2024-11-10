@@ -1,24 +1,32 @@
 {
   "name": "joint-react",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.1",
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "clean-release": "rm -rf dist",
+    "compile-for-release": "tsc -p ./tsconfig-release.json",
+    "build-for-release": "npm run clean-release && npm run compile-for-release",
+    "publish": "npm run build-for-release && npm publish"
   },
   "dependencies": {
+    "@joint/core": "^4.0.4",
     "react": "^18",
-    "react-dom": "^18",
-    "next": "14.2.3"
+    "react-dom": "^18"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "next": "14.2.3",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
-    "eslint-config-next": "14.2.3"
+    "eslint-config-next": "14.2.3",
+    "typescript": "^5"
+  },
+  "exports": {
+    "./": "dist/"
   }
 }
