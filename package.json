@@ -10,7 +10,7 @@
     "clean-release": "rm -rf dist",
     "compile-for-release": "tsc -p ./tsconfig-release.json",
     "build-for-release": "npm run clean-release && npm run compile-for-release",
-    "publish": "npm run build-for-release && npm publish"
+    "build-publish": "npm run build-for-release && npm publish"
   },
   "dependencies": {
     "@joint/core": "^4.0.4",
