@@ -3,16 +3,42 @@
 import {GraphContext} from "@/joint-react/graphContext";
 import {dia, shapes} from "@joint/core";
 import Graph = dia.Graph;
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import { Paper } from "@/joint-react/Paper";
 import {Rect} from "@/joint-react/shapes/standard/Rect";
 import {Link} from "@/joint-react/shapes/standard/Link";
+import {Link as BaseLink} from "@/joint-react/shapes/base/Link";
+
+function SubComponent(props: any) {
+    const {width, height, renderCount} = props;
+    useEffect(() => {
+        console.log("Heavy computation, ran for ", width * height);
+    }, [width, height])
+    return <div>{renderCount * 10}</div>
+}
+
+export function JointReactDiv2() {
+    const [namespace, setNamespace] = useState(shapes);
+    const [clickCount, setClickCount] = useState(1)
+    return <div style={{width: '100%', border: "1px solid black"}}>
+        <div>
+            <button onClick={() => {
+                setClickCount(c => c + 1);
+            }}>count + 1
+            </button>
+            {clickCount}
+        </div>
+        <div>
+            <SubComponent width={480} height={480} background={{ color: '#F5F5B5' }} cellViewNamespace={namespace} renderCount={clickCount}/>
+        </div>
+    </div>
+}
 
 export function JointReactDiv() {
     const [namespace, setNamespace] = useState(shapes);
     const [clickCount, setClickCount] = useState(1)
-    const rect1 = useState<dia.Element | undefined>(undefined);
-    const rect2 = useState<dia.Element | undefined>(undefined);
+
+    const background = useRef({ color: '#F5F5B5' })
 
 
     return <div style={{width:'100%', border:"1px solid black"}}>
@@ -25,10 +51,31 @@ export function JointReactDiv() {
         </div>
 
         <div>
-            <Paper width={300} height={300} background={{ color: '#F5F5B5' }} cellViewNamespace={namespace} renderCount={clickCount}>
-                <Rect x={100} y={150} width={80} height={40} callbackState={rect1}/>
-                <Rect x={100} y={210} width={80} height={40} callbackState={rect2}/>
-                <Link source={rect1[0]} target={rect2[0]} />
+            <Paper width={480} height={480} background={background.current} cellViewNamespace={namespace} renderCount={clickCount}>
+                <Rect x={0} y={0} width={80} height={40} />
+                <Rect id="middlepoint"  x={clickCount*10} y={230} width={80} height={40} />
+                <Link
+                    source={<Rect x={100} y={100} width={80} height={40} />}
+                    target={{id: "middlepoint1"}}
+                    labels={[{
+                        attrs: {
+                            text: {
+                                text: "hello world",
+                            }
+                        }
+                    }]}
+                />
+                {/*<Link*/}
+                {/*    source={<Rect x={300} y={100} width={80} height={40} />}*/}
+                {/*    target={<Rect x={300} y={230} width={80} height={40} />}*/}
+                {/*    labels={[{*/}
+                {/*        attrs: {*/}
+                {/*            text: {*/}
+                {/*                text: "hello world",*/}
+                {/*            }*/}
+                {/*        }*/}
+                {/*    }]}*/}
+                {/*/>*/}
             </Paper>
         </div>
     </div>

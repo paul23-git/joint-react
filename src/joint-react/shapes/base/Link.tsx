@@ -5,6 +5,7 @@ import LinkAttributes = shapes.standard.LinkAttributes;
 import ConstructorOptions = dia.Cell.ConstructorOptions;
 import {GraphContext} from "@/joint-react/graphContext";
 import {ElementContext} from "@/joint-react/ElementContext";
+import {useJointShape} from "@/joint-react/shapes/useJointShape";
 
 
 
@@ -14,26 +15,36 @@ type PropTy = LinkAttributes & {
 
 
 export function Link(props: PropTy) {
-    const graph = useContext(GraphContext);
-    const {elements, setElements} = useContext(ElementContext);
     const {source, target, options} = props;
-
-
-    useEffect(() => {
-        if (graph && source && target) {
-            const link = new shapes.standard.Link({}, );
-            // new dia.Link()
-
-            // link.source(source);
-            // link.target(target);
-            link.addTo(graph);
-
-            return () => {
-                console.log("remove link");
-                link.remove();
-            }
+    useJointShape(([source, target]) => {
+        if (source && target) {
+            const link = new dia.Link({}, );
+            link.source(source);
+            link.target(target);
+            return link
+        } else {
+            return undefined;
         }
-    }, [graph, source, target, elements])
+    }, [source, target]);
+
+
+    // const graph = useContext(GraphContext);
+    // const {elements, setElements} = useContext(ElementContext);
+    // useEffect(() => {
+    //     if (graph && source && target) {
+    //         const link = new dia.Link({}, );
+    //         // new dia.Link()
+    //
+    //         // link.source(source);
+    //         // link.target(target);
+    //         link.addTo(graph);
+    //
+    //         return () => {
+    //             console.log("remove link");
+    //             link.remove();
+    //         }
+    //     }
+    // }, [graph, source, target])
 
 
     return <></>
