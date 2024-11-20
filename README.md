@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
+This tutorial is meant for people who have a (very) basic level of react knowledge. 
+One should know what a component is and what html elements are. Also one should not be surprised having to read actual react syntax (.tsx files).
+To start off make sure to install all packages.  
+then run `npm run dev`  
+And open a browser and go to localhost:3000
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### File structure
+
+The tutorials are located under the "tutorial" directory.  
+The main files in that directory can be ignored initially, but each chapter has its own subdirectory.
+The names of the chapters follow the names of the tutorial (tabs)
+
+Ideally one first listens to each part, read the description and then look into the code how this is actually implement.
+
+### Extra information
+
+The tutorial is based on self explaining code, where each chapter is also written using the ideas of that chapteer.
+It consists of two parts, a basis part and an advanced tutorial part. 
+The advanced tutorial is meant to follow directly after understand the basis, and has the same chapters; they can be access by selecting the flag.
+
+The files are meant to be self explanatory, with only little external help required. Some general structures of the tutorial that might cause confusion:
+Most tutorial-components start with, this can be ignored (until the chapter about contexts).
+```jsx
+const advanced = useContext(AdvancedCtx);
 ```
+Further more a lot of elements in the tutorial are called `AbcDiv`, ie `ElemDiv` and `TextDiv`. These are so called "styled components". 
+The way these work is out of scope of this tutorial, and one should just consider them to be "fancy div elements".
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Finally parts of each chapter might be between:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```jsx
+{/* ADVANCED */}
+{/* END-ADVANCED */}
+```
+or 
+```jsx
+/* ADVANCED */
+/* END-ADVANCED */
+```
+These are sections for the "advanced tutorial", and should be ignored when reading the basic tutorial.
