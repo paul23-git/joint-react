@@ -22,3 +22,11 @@ export const CodeDiv = styled.div`
     margin-left: 1ch;
     margin-right: 1ch;
 `
+export const ElemDiv = styled.div`
+    padding-top: 8px;
+`
+export const BoxedDiv = styled.div`
+    border: 1px dimgray solid;
+    margin: 13px;
+    padding: 2px;
+`

@@ -1,7 +1,11 @@
 import {ElementType, Fragment, ReactNode, useState} from "react";
 import styled from "styled-components";
-import {ComplexState} from "@/app/tutorial/complex-state/ComplexState";
-import {SimpleState} from "@/app/tutorial/state-and-ref/SimpleState";
+import {ComplexState} from "@/app/tutorial/c2-complex-state/ComplexState";
+import {SimpleState} from "@/app/tutorial/c1-state-and-ref/SimpleState";
+import {MobxStore} from "@/app/tutorial/c3-mobx-store/MobxStore";
+import {MobxComplexState} from "@/app/tutorial/c4-mobx-store-nested/MobxComplexState";
+import {MobxStateTree} from "@/app/tutorial/c5-mobx-state-tree/MobxStateTree";
+import {UseLocalObservableStore} from "@/app/tutorial/c6-local-mobx-store/UseLocalObservableStore";
 
 type tabType = {
     label: ReactNode,
@@ -48,34 +52,38 @@ const TabContentDiv = styled.div`
 `
 
 export const ShowReactStates = () => {
-    const [visibleTab, setVisibleTab] = useState<string|number>(0);
+    const [visibleTab, setVisibleTab] = useState<string|number>(4);
 
     const tabs:tabType[] = [{
-        tabKey: -1,
+        tabKey: 1,
         label: "useState and useRef",
         component: SimpleState,
     }, {
-        tabKey: 0,
+        tabKey: 2,
         label: "complex-state",
         component: ComplexState,
     }, {
-        tabKey: 1,
-        label: "mobx-store",
-        component: SimpleTab,
-    }, {
-        tabKey: 2,
-        label: "mobx-state-tree",
-        component: SimpleTab,
-    }, {
         tabKey: 3,
-        label: "local-mobx-store",
-        component: SimpleTab,
+        label: "mobx-store",
+        component: MobxStore,
     }, {
         tabKey: 4,
-        label: "state-drilling",
-        component: SimpleTab,
+        label: "mobx-complex-store",
+        component: MobxComplexState,
     }, {
         tabKey: 5,
+        label: "mobx-state-tree",
+        component: MobxStateTree,
+    }, {
+        tabKey: -2,
+        label: "local-mobx-store",
+        component: UseLocalObservableStore,
+    }, {
+        tabKey: -3,
+        label: "prop-drilling-and-useContext",
+        component: SimpleTab,
+    }, {
+        tabKey: -4,
         label: "Conclusion",
         component: SimpleTab,
     },]

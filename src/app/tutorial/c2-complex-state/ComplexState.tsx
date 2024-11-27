@@ -1,15 +1,10 @@
+/* eslint-disable react/no-unescaped-entities */
 'use client'
 
-import {useContext, useRef, useState} from "react";
-import {BoxedDiv} from "@/app/tutorial/BoxedDiv";
-import {CodeSpan, TextDiv} from "@/app/tutorial/TextDiv";
-import styled from "styled-components";
+import {useContext, useState} from "react";
+import {CodeSpan, ElemDiv, TextDiv} from "@/app/tutorial/Styled";
 import {AdvancedCtx} from "@/app/tutorial/AdvancedContext";
-
-
-const ElemDiv = styled.div`
-    padding-top: 8px;
-`
+import {BoxedDiv} from "@/app/tutorial/Styled";
 
 
 
@@ -34,9 +29,9 @@ export const ComplexState = (props: {tabKey: string | number}) => {
 
     function handleGoodClick() {
         setComplexState(oldState => {
-            const cloned_state = {...oldState};
-            cloned_state.initial_b += 1;
-            return cloned_state;
+            const clonedState = {...oldState};
+            clonedState.initial_b += 1;
+            return clonedState;
         })
     }
 

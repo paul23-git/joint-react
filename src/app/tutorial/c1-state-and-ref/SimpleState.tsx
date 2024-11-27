@@ -1,18 +1,14 @@
+/* eslint-disable react/no-unescaped-entities */
 'use client'
 
 import {useContext, useRef, useState} from "react";
-import {BoxedDiv} from "@/app/tutorial/BoxedDiv";
-import {CodeSpan, TextDiv} from "@/app/tutorial/TextDiv";
-import styled from "styled-components";
+import {CodeSpan, TextDiv} from "@/app/tutorial/Styled";
 import {AdvancedCtx} from "@/app/tutorial/AdvancedContext";
 
+import {BoxedDiv, ElemDiv} from "@/app/tutorial/Styled";
 
-const ElemDiv = styled.div`
-    padding-top: 8px;
-`
 
 const SubComponent = () => {
-
     const renderCount = useRef(0);
 
     const [clickCount, setClickCount] = useState(0);
@@ -92,9 +88,9 @@ export const SimpleState = (props: {tabKey: string | number}) => {
         {advanced && <ElemDiv>
             <TextDiv>
                 Whenever we press the no state update button we change the state to the same value it already was.
-                The state is "changed", this causes the function to rerender. However at the drawing phase of the component rendering,
+                The state "changes", this causes the function to rerender. However at the drawing phase of the component rendering,
                 react optimizer notices no state is actually *different*; which causes two things: rerender of child components is not called
-                and the actual drawing of the virtual dom to the real dom is not called.
+                and the actual drawing of the virtual dom to the real dom is not called.<br/>
                 In effect: the console log is shown (and internally the renderCount is updated) but this is not visible.
             </TextDiv>
             <button onClick={() => setClickCount(c => c)}>
