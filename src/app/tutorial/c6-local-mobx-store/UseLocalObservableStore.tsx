@@ -39,7 +39,7 @@ export const UseLocalObservableStore = observer((props: {tabKey: string | number
             Mobx and MST provide powerful utilities to optimize react rendering, and manage state. However sometimes creating
             a full store feels like a lot of boiler plate. Yet at the same time using state is a bit inefficient, and leads to multiple rerenders<br/>
             For this reason we can use <CodeSpan>useLocalObservable()</CodeSpan>. With this you can quickly create an observable state/store. <br/>
-            <a href={""}>See mobx-react-lite package for details</a>
+            <a href={"https://github.com/mobxjs/mobx-react#uselocalobservable-hook"}>See mobx-react-lite package for details</a>
         </TextDiv>
         <hr/>
         <ElemDiv>

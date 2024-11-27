@@ -69,14 +69,13 @@ export const MobxStateTree = observer((props: {tabKey: string | number}) => {
         {advanced && <ElemDiv>
             <TextDiv>
                 Async functions, or promises with callbacks <CodeSpan>then()</CodeSpan>, create a new event loop.
-                Mobx cannot guarantee that this event loop doesn't run during the render step. Thus each of the
-                functions there
-                need to be ran inside an action themselves.<br/>
-                For mst we are limited to the single solution: <br/>
-                &nbsp;&nbsp;Just call another action instead that directly changes the value.
+                MST cannot guarantee that this event loop doesn't run during the render step. Thus each of the
+                functions there needs to be ran inside an action themselves.<br/>
+                For MST we are limited to the single solution: <br/>
+                &nbsp;&nbsp;Just call another action instead that directly changes the value. <br/>
                 &nbsp;&nbsp;Notice that these two actions need to be in a separate action statement.
             </TextDiv>
-            <div><b>finished - warning: </b>
+            <div><b>finished - error: </b>
                 <input checked={todoStore.finished}
                        type={"checkbox"}
                        onChange={e => todoStore.delayedToggleNoRunInAction()}/>

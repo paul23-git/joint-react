@@ -20,7 +20,7 @@ type Level2InBetweenPropTy = {
 const Level2InBetween = (props: Level2InBetweenPropTy) => {
     const {outerInputValue} = props;
     return <BoxedDiv>
-        Drilling deeper, level 1
+        Drilling deeper, level 2
         <SubComponent outerInputValue={outerInputValue}/>
     </BoxedDiv>
 }

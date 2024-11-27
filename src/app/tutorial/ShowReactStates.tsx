@@ -6,6 +6,8 @@ import {MobxStore} from "@/app/tutorial/c3-mobx-store/MobxStore";
 import {MobxComplexState} from "@/app/tutorial/c4-mobx-store-nested/MobxComplexState";
 import {MobxStateTree} from "@/app/tutorial/c5-mobx-state-tree/MobxStateTree";
 import {UseLocalObservableStore} from "@/app/tutorial/c6-local-mobx-store/UseLocalObservableStore";
+import {StateDrillingAndContext} from "@/app/tutorial/c7-state-drilling-and-context/StateDrillingAndContext";
+import {Conclusion} from "@/app/tutorial/c8-conclusion/Conclusion";
 
 type tabType = {
     label: ReactNode,
@@ -75,17 +77,17 @@ export const ShowReactStates = () => {
         label: "mobx-state-tree",
         component: MobxStateTree,
     }, {
-        tabKey: -2,
+        tabKey: 6,
         label: "local-mobx-store",
         component: UseLocalObservableStore,
     }, {
-        tabKey: -3,
+        tabKey: 7,
         label: "prop-drilling-and-useContext",
-        component: SimpleTab,
+        component: StateDrillingAndContext,
     }, {
-        tabKey: -4,
+        tabKey: 8,
         label: "Conclusion",
-        component: SimpleTab,
+        component: Conclusion,
     },]
 
     const DisplayComp = tabs.find((t) => t.tabKey === visibleTab)?.component
@@ -110,8 +112,4 @@ export const ShowReactStates = () => {
             {DisplayComp && <DisplayComp tabKey={visibleTab}/>}
         </TabContentDiv>
     </div>
-}
-
-export const SimpleTab = (props: {tabKey: string | number}) => {
-    return <div>{"simple component " + props.tabKey.toString()}</div>
 }

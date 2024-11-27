@@ -10,7 +10,7 @@ export const Level1InBetween = () => {
 }
 const Level2InBetween = () => {
     return <BoxedDiv>
-        Drilling deeper, level 1
+        Drilling deeper, level 2
         <SubComponent/>
     </BoxedDiv>
 }
