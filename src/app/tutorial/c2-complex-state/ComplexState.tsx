@@ -7,8 +7,6 @@ import {AdvancedCtx} from "@/app/tutorial/AdvancedContext";
 import {BoxedDiv} from "@/app/tutorial/Styled";
 
 
-
-
 export const ComplexState = (props: {tabKey: string | number}) => {
     const advanced = useContext(AdvancedCtx);
 

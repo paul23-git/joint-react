@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 'use client'
 
-import {useContext, useRef} from "react";
+import {useContext, useRef, useState} from "react";
 import {ElemDiv, TextDiv} from "@/app/tutorial/Styled";
 import {AdvancedCtx} from "@/app/tutorial/AdvancedContext";
 import {observer} from "mobx-react-lite";
@@ -9,6 +9,11 @@ import {runInAction} from "mobx";
 import {Todo} from "@/app/tutorial/c4-mobx-store-nested/TodoStore";
 import {SubComponent} from "@/app/tutorial/c4-mobx-store-nested/SubComponent";
 import {BoxedDiv} from "@/app/tutorial/Styled";
+import {BaseTy} from "@/app/tutorial/c6-local-mobx-store/types";
+import {StateBasedFooComponent} from "@/app/tutorial/c4-mobx-store-nested/StateBasedFooComponent";
+import {StateBasedHelloComponent} from "@/app/tutorial/c4-mobx-store-nested/StateBasedHelloComponent";
+import {StoreBasedFooComponent} from "@/app/tutorial/c4-mobx-store-nested/StoreBasedFooComponent";
+import {StoreBasedHelloComponent} from "@/app/tutorial/c4-mobx-store-nested/StoreBasedHelloComponent";
 
 
 
@@ -16,6 +21,17 @@ export const MobxComplexState = observer((props: {tabKey: string | number}) => {
     const advanced = useContext(AdvancedCtx);
     const renderCount = useRef(0);
     const todoStoreRef = useRef(new Todo("Hello world"));
+
+    /* ADVANCED */
+    const [stateVersion, setStateVersion] = useState<BaseTy>(() => {
+        return {
+            foo: 0,
+            hello: 0,
+            base: 0,
+        }
+    })
+    /* END-ADVANCED */
+
     const todoStore = todoStoreRef.current;
 
     renderCount.current += 1;
@@ -65,9 +81,22 @@ export const MobxComplexState = observer((props: {tabKey: string | number}) => {
 
         {/* ADVANCED */}
         {advanced && <ElemDiv>
+            <TextDiv><b>
+                {"Rerender count: " + renderCount.current.toString()}
+            </b></TextDiv>
             <TextDiv>
-                no advanced tutorial at this time.
+                We will to compare the difference between using mobx store and using a state here. <br/>
+                The first two use normal states, as explained in tutorial 3.<br/>
+                The bottom two use observable stores. <br/>
+                <br/>
+                Notice the difference in which are rerendered when we press them.
             </TextDiv>
+            <hr/>
+            <StoreBasedFooComponent data={todoStore}/>
+            <StoreBasedHelloComponent data={todoStore}/>
+            <hr/>
+            <StateBasedFooComponent data={stateVersion} setData={setStateVersion}/>
+            <StateBasedHelloComponent data={stateVersion} setData={setStateVersion}/>
 
         </ElemDiv>}
         {/* END-ADVANCED */}

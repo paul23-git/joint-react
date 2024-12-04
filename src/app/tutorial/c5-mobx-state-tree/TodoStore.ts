@@ -19,8 +19,8 @@ export const Todo = types.model("Todo", {
         self.complexCount.set("foo", c + 1);
     },
     increaseHelloCount() {
-        const c = self.complexCount.get("foo") || 0;
-        self.complexCount.set("foo", c + 1);
+        const c = self.complexCount.get("hello") || 0;
+        self.complexCount.set("hello", c + 1);
     },
     async delayedToggleNoRunInAction() {
         await asyncTimeout(0.5);

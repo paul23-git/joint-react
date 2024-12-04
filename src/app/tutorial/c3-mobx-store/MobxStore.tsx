@@ -10,7 +10,6 @@ import {Todo} from "@/app/tutorial/c3-mobx-store/TodoStore";
 import {BoxedDiv} from "@/app/tutorial/Styled";
 
 
-
 export const MobxStore = observer((props: {tabKey: string | number}) => {
     const advanced = useContext(AdvancedCtx);
     const renderCount = useRef(0);
@@ -119,7 +118,12 @@ export const MobxStore = observer((props: {tabKey: string | number}) => {
             <div><b>finished - using runInAction: </b>
                 <input checked={todoStore.finished}
                        type={"checkbox"}
-                       onChange={e => todoStore.delayedToggle()}/>
+                       onChange={e => todoStore.delayedToggleRunInAction()}/>
+            </div>
+            <div><b>finished - using explicit action: </b>
+                <input checked={todoStore.finished}
+                       type={"checkbox"}
+                       onChange={e => todoStore.delayedToggleSeparateAction()}/>
             </div>
         </ElemDiv>}
         {/* END-ADVANCED */}

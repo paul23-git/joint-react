@@ -18,7 +18,8 @@ export class Todo {
             increaseFooCount: action,
             increaseHelloCount: action,
             delayedToggleNoRunInAction: action,
-            delayedToggle: action,
+            delayedToggleRunInAction: action,
+            delayedToggleSeparateAction: action,
         });
         this.title = title;
     }
@@ -27,14 +28,13 @@ export class Todo {
         this.finished = !this.finished
     }
 
-
     increaseFooCount() {
         const c = this.complex_count.get("foo") || 0;
         this.complex_count.set("foo", c + 1);
     }
     increaseHelloCount() {
         const c = this.complex_count.get("hello") || 0;
-        this.complex_count.set("foo", c + 1);
+        this.complex_count.set("hello", c + 1);
     }
 
 
@@ -44,12 +44,18 @@ export class Todo {
         // This will hence give a warning
         this.finished = !this.finished;
     }
-    async delayedToggle() {
+    async delayedToggleRunInAction() {
         await asyncTimeout(0.5);
         runInAction(() => {
             // Code here is after an await, thus it is no longer ran in the same event loop as the "action"
             // By putting it again in an action we prevent the warning and tell mobx to execute it while we are not rendering
             this.finished = !this.finished;
         });
+    }
+    async delayedToggleSeparateAction() {
+        await asyncTimeout(0.5);
+        // Code here is after an await, thus it is no longer ran in the same event loop as the "action"
+        // By putting it again in an explicit action we prevent tha warning.
+        this.toggle();
     }
 }

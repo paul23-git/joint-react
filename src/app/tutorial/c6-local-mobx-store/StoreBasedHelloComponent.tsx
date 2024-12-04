@@ -16,7 +16,7 @@ export const StoreBasedHelloComponent = observer((props: { data: BaseTy }) => {
 
     return <>
         <TextDiv><b>
-            {"Rerender SubComponent count: " + renderCount.current.toString()}
+            {"Rerender Store-SubComponent count: " + renderCount.current.toString()}
         </b><br/>
             {"Count (hello) " + data.hello }</TextDiv>
         <div>

@@ -63,7 +63,7 @@ export const UseLocalObservableStore = observer((props: {tabKey: string | number
                 {"Rerender count: " + renderCount.current.toString()}
             </b></TextDiv>
             <TextDiv>
-                We will to compare the differende between using mobx (local) store and using a state here. <br/>
+                We will to compare the difference between using mobx (local) store and using a state here. <br/>
                 The first two use normal states, as explained in tutorial 3.<br/>
                 The bottom two use observable stores. <br/>
                 <br/>

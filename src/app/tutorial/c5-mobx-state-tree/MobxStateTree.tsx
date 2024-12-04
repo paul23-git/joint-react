@@ -52,7 +52,8 @@ export const MobxStateTree = observer((props: {tabKey: string | number}) => {
         </ElemDiv>
         <ElemDiv>
             <TextDiv>
-                Mobx also directly recognizes when you access an observable map
+                Mobx state tree also directly recognizes when you access an observable map,
+                working similarly with the same advantages as a normal mobx store.
             </TextDiv>
             <div>
                 <hr/>
@@ -73,14 +74,14 @@ export const MobxStateTree = observer((props: {tabKey: string | number}) => {
                 functions there needs to be ran inside an action themselves.<br/>
                 For MST we are limited to the single solution: <br/>
                 &nbsp;&nbsp;Just call another action instead that directly changes the value. <br/>
-                &nbsp;&nbsp;Notice that these two actions need to be in a separate action statement.
+                &nbsp;&nbsp;Notice that these two actions need to be in a separate <CodeSpan>action</CodeSpan> statement.
             </TextDiv>
             <div><b>finished - error: </b>
                 <input checked={todoStore.finished}
                        type={"checkbox"}
                        onChange={e => todoStore.delayedToggleNoRunInAction()}/>
             </div>
-            <div><b>finished - using runInAction: </b>
+            <div><b>finished - using another action: </b>
                 <input checked={todoStore.finished}
                        type={"checkbox"}
                        onChange={e => todoStore.delayedToggle()}/>
