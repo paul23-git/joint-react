@@ -46,7 +46,7 @@ export const ComplexState = (props: {tabKey: string | number}) => {
                 The object is still refers to the same number. react then doesn't see that the state has changed.
             </TextDiv>
             <button onClick={handleBadClick}>
-                {"state button clicked: " + complexState.initial_a.toString()}
+                {"bad-state-update button clicked: " + complexState.initial_a.toString()}
             </button>
         </ElemDiv>
         <ElemDiv>
@@ -55,7 +55,7 @@ export const ComplexState = (props: {tabKey: string | number}) => {
                 This is why state is called "immutable" in react, and is the reducer pattern that is all around react architecture.
             </TextDiv>
             <button onClick={handleGoodClick}>
-                {"ref button clicked: " + complexState.initial_b.toString()}
+                {"good-state-update button clicked: " + complexState.initial_b.toString()}
             </button>
         </ElemDiv>
         {/* ADVANCED */}

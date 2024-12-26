@@ -54,7 +54,7 @@ const TabContentDiv = styled.div`
 `
 
 export const ShowReactStates = () => {
-    const [visibleTab, setVisibleTab] = useState<string|number>(4);
+    const [visibleTab, setVisibleTab] = useState<string|number>(1);
 
     const tabs:tabType[] = [{
         tabKey: 1,

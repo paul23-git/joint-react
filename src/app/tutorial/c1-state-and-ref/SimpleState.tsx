@@ -84,20 +84,20 @@ export const SimpleState = (props: {tabKey: string | number}) => {
                 {"ref button clicked: " + clickOnRef.current.toString()}
             </button>
         </ElemDiv>
+        <SubComponent/>
         {/* ADVANCED */}
         {advanced && <ElemDiv>
             <TextDiv>
-                Whenever we press the no state update button we change the state to the same value it already was.
+                Whenever we press the state update button below we change the state to the same value it already was.
                 The state "changes", this causes the function to rerender. However at the drawing phase of the component rendering,
                 react optimizer notices no state is actually *different*; which causes two things: rerender of child components is not called
                 and the actual drawing of the virtual dom to the real dom is not called.<br/>
                 In effect: the console log is shown (and internally the renderCount is updated) but this is not visible.
             </TextDiv>
             <button onClick={() => setClickCount(c => c)}>
-                {"no state update button clicked: " + clickCount.toString()}
+                {"state update button clicked: " + clickCount.toString()}
             </button>
         </ElemDiv>}
         {/* END-ADVANCED */}
-        <SubComponent/>
     </BoxedDiv>
 }

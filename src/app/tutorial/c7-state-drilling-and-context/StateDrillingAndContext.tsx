@@ -53,6 +53,7 @@ export const StateDrillingAndContext = (props: {tabKey: string | number}) => {
                 Below you can see an example where we wrap the inputValue inside a simple context. Notice that we do not
                 have to provide anything directly to the subcomponent.
             </TextDiv>
+            <SubComponent/>
             <SimpleTextualContext.Provider value={inputValue}>
                 <SubComponent/>
             </SimpleTextualContext.Provider>

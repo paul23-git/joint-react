@@ -93,7 +93,7 @@ export const MobxStore = observer((props: {tabKey: string | number}) => {
                 <button onClick={e => todoStore.increaseFooCount()}>Increase Foo count</button>
                 </div>
                 <div><b>Hello: </b>{todoStore.complex_count.get("hello") || 0}
-                <button onClick={e => todoStore.increaseFooCount()}>Increase Hello count</button>
+                <button onClick={e => todoStore.increaseHelloCount()}>Increase Hello count</button>
                 </div>
                 <hr/>
             </div>
