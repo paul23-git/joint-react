@@ -41,6 +41,7 @@ export function JointReactDiv() {
     const background = useRef({ color: '#F5F5B5' })
 
 
+
     return <div style={{width:'100%', border:"1px solid black"}}>
         here be the component down there
         <div>
@@ -54,9 +55,10 @@ export function JointReactDiv() {
             <Paper width={480} height={480} background={background.current} cellViewNamespace={namespace} renderCount={clickCount}>
                 <Rect x={0} y={0} width={80} height={40} />
                 <Rect id="middlepoint"  x={clickCount*10} y={230} width={80} height={40} />
+                <Rect id={"source"} x={100} y={100} width={80} height={40} />
                 <Link
-                    source={<Rect x={100} y={100} width={80} height={40} />}
-                    target={{id: "middlepoint1"}}
+                    source={{id: "source"}}
+                    target={{id: "middlepoint"}}
                     labels={[{
                         attrs: {
                             text: {
@@ -64,18 +66,11 @@ export function JointReactDiv() {
                             }
                         }
                     }]}
+                    attrs={{
+                        // @ts-ignore
+                        'line/strokeWidth': 20
+                    }}
                 />
-                {/*<Link*/}
-                {/*    source={<Rect x={300} y={100} width={80} height={40} />}*/}
-                {/*    target={<Rect x={300} y={230} width={80} height={40} />}*/}
-                {/*    labels={[{*/}
-                {/*        attrs: {*/}
-                {/*            text: {*/}
-                {/*                text: "hello world",*/}
-                {/*            }*/}
-                {/*        }*/}
-                {/*    }]}*/}
-                {/*/>*/}
             </Paper>
         </div>
     </div>

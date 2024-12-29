@@ -9,56 +9,36 @@ import EndJSON = dia.Link.EndJSON;
 
 
 
-type PropTy<T extends { setLinkCallback?: Dispatch<SetStateAction<dia.Element | undefined>> }> = LinkAttributes & {
+type PropTy = LinkAttributes & {
     configOptions?: ConstructorOptions,
-    source: ReactElement<T> | EndJSON,
-    target: ReactElement<T> | EndJSON,
+    source: EndJSON,
+    target: EndJSON,
+
 }
 
-function useLink(source: EndJSON | undefined, target: EndJSON | undefined, attributes: LinkAttributes, opt?: ConstructorOptions ) {
-    useJointShape(([sourceElement, targetElement]) => {
-        if (sourceElement && targetElement) {
-            const link = new shapes.standard.Link(attributes, opt);
-            link.source(sourceElement);
-            link.target(targetElement);
-            return link
-        } else {
-            return undefined;
+export function useLink(source: EndJSON, target: EndJSON, linkProps: LinkAttributes, configOptions?: ConstructorOptions ) {
+    useJointShape(() => {
+        const sourceOrigin = source;
+        const targetOrigin = target;
+        const {attrs, ...startProps} = linkProps;
+        const link = new shapes.standard.Link(startProps, configOptions);
+        link.source(sourceOrigin);
+        link.target(targetOrigin);
+        if (attrs) {
+            for (const [key, val] of Object.entries(attrs)) {
+                link.attr(key, val);
+            }
         }
-    }, [source, target, JSON.stringify(attributes), JSON.stringify(opt)]);
+        return link
+    }, [source, target, JSON.stringify(linkProps), JSON.stringify(configOptions)]);
 }
 
 
-export function Link<T extends { setLinkCallback?: Dispatch<SetStateAction<dia.Element | undefined>> }>(props: PropTy<T>) {
-    // const graph = useContext(GraphContext);
-    // const {elements, setElements} = useContext(ElementContext);
+export function Link(props: PropTy) {
     const {source, target, configOptions, ...linkProps} = props;
-    const [sourceElement, setSourceElement] = useState<EndJSON | undefined>(undefined);
-    const [targetElement, setTargetElement] = useState<EndJSON | undefined>(undefined);
 
-    useLink(sourceElement, targetElement, linkProps, configOptions);
-    useJointShape(([sourceElement, targetElement]) => {
-        const sourceOrigin = isValidElement(source) ? sourceElement : source;
-        const targetOrigin = isValidElement(target) ? targetElement : target;
-        if (sourceOrigin && targetOrigin) {
-            const link = new shapes.standard.Link(linkProps, configOptions);
-            link.source(sourceOrigin);
-            link.target(targetOrigin);
-            return link
-        } else {
-            return undefined;
-        }
-    }, [sourceElement, targetElement, source, target, JSON.stringify(linkProps), JSON.stringify(configOptions)]);
-
-
-    // @ts-ignore
-    const enhancedSource = isValidElement(source) ? cloneElement(source, { setLinkCallback: setSourceElement }) : <></>;
-    // @ts-ignore
-    const enhancedTarget = isValidElement(target) ? cloneElement(target, { setLinkCallback: setTargetElement })  : <></>;
-
+    useLink(source, target, linkProps, configOptions);
 
     return <>
-        {enhancedSource}
-        {enhancedTarget}
     </>
 }
