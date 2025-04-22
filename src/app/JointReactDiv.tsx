@@ -1,13 +1,11 @@
 'use client'
 
-import {GraphContext} from "@/joint-react/graphContext";
 import {dia, shapes} from "@joint/core";
-import Graph = dia.Graph;
 import {useEffect, useRef, useState} from "react";
 import { Paper } from "@/joint-react/Paper";
 import {Rect} from "@/joint-react/shapes/standard/Rect";
 import {Link} from "@/joint-react/shapes/standard/Link";
-import {Link as BaseLink} from "@/joint-react/shapes/base/Link";
+import {Circle} from "@/joint-react/shapes/standard/Circle";
 
 function SubComponent(props: any) {
     const {width, height, renderCount} = props;
@@ -53,7 +51,7 @@ export function JointReactDiv() {
 
         <div>
             <Paper width={480} height={480} background={background.current} cellViewNamespace={namespace} renderCount={clickCount}>
-                <Rect x={0} y={0} width={80} height={40} />
+                <Circle x={20} y={20} width={20} height={40} />
                 <Rect id="middlepoint"  x={clickCount*10} y={230} width={80} height={40} />
                 <Rect id={"source"} x={100} y={100} width={80} height={40} />
                 <Link
@@ -66,10 +64,13 @@ export function JointReactDiv() {
                             }
                         }
                     }]}
-                    attrs={{
-                        // @ts-ignore
-                        'line/strokeWidth': 20
+                    line={{
+                        strokeWidth: 30,
                     }}
+                    // attrs={{
+                    //     // @ts-ignore
+                    //     'line/strokeWidth': 3
+                    // }}
                 />
             </Paper>
         </div>
